@@ -1,5 +1,6 @@
 {
-  "task_id": "EXP08_V22_V4_CNN_ENCODED_DIRECTION_ADAPTIVE_BI_G3_IMPLEMENTATION_V1",
+  "task_id": "EXP08_V22_V4_CNN_ENCODED_DIRECTION_ADAPTIVE_BI_G3_FASTFIX_R1",
+  "implementation_version": "V4_SCFIX_FAST_R1",
   "model": "CNN_DA_BI_G3_V4",
   "seed": 42,
   "device": "cuda",
@@ -44,7 +45,21 @@
   "selective_readout": true,
   "direction_adaptive_gate": true,
   "direction_auxiliary_loss": true,
-  "optimizer": "AdamW",
+  "sc_aggregation_fix": true,
+  "sc_reverse_alignment_fix": true,
+  "runtime": {
+    "runtime_mode": "fast",
+    "amp": "auto",
+    "tf32": true,
+    "cudnn_benchmark": true,
+    "compile": "auto",
+    "compile_mode": "reduce-overhead",
+    "pin_memory": true,
+    "non_blocking": true,
+    "train_diagnostics": "minimal",
+    "dev_diagnostics": "auc_only",
+    "test_diagnostics": "full_once"
+  },
   "directions": 2,
   "weight_sharing": true,
   "fusion": "direction_adaptive_gate",
@@ -52,16 +67,15 @@
   "uses_future_beyond_clip": false,
   "train_loader": {
     "shuffle": true,
-    "num_workers": 0
+    "num_workers": 0,
+    "pin_memory": true
   },
   "folds": {
     "protocol": "patient_event_loso",
     "n_folds": 117,
-    "source": "E:\\\\seizure pred\\\\V2_2_FULL_PACKAGE\\\\v2_2_literature_aligned\\\\folds\\\\patient_event_loso",
     "rebuilt": false
   },
   "hash_verification": false,
-  "scope": "within_window_noncausal_ablation_not_strict_online_causal",
   "v2_1_reused_features": true,
   "v2_2_incremental_features": true,
   "features_recomputed": false
